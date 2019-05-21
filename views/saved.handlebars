@@ -5,7 +5,6 @@
                 <div id="headerJumbotron">
                     <h6 class="text-center">Mongo Scraper</h6>
                 </div>
-                <div id="subheaderJumbotron"></div>
             </div>
         </div>
     </div>
@@ -22,8 +21,6 @@
         </li>
     </ul>
 
-    <button type="button" class="btn btn-primary" id="scrapeArticlesButton">Scrape New Articles</button>
-
 </nav>
 
 <div class="articleContainer">
@@ -33,9 +30,7 @@
         </div>
 
         <div class="col-10 articleColumn">
-
-            {{#each articles}}
-
+            {{#each articles }}
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">{{title}}</h3>
@@ -43,9 +38,14 @@
                 <div class="panel-body">
                     <a class="artLink" href={{link}}>{{link}}</a>
 
-                    <button type="button" class="btn btn-primary saveArticleButton" data-id={{id}}>Save
+
+                    <button type="button" class="btn btn-primary deleteSavedArticleButton" data-id={{id}}>Delete
                         Article</button>
 
+                    <button type="button" class="btn btn-primary addNoteButton" data-id={{id}}
+                        data-notes={{comment}}>Add Note</button>
+
+                    <div id="notes"></div>
                 </div>
             </div>
             <br />
@@ -61,39 +61,37 @@
     </div>
 </div>
 
-
-<div class="modal fade" id="scrapeArticlesModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div class="modal fade" id="articleDeleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title articlesScrapedTitle">Articles Scraped</h5>
+                <h5 class="modal-title articleDeleteTitle">Success!</h5>
             </div>
-            <div class="modal-body articlesScrapedBody">
+            <div class="modal-body articleDeleteBody">
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" id="closeScrapeButton"
-                    data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary deleteSavedArticleModalButton"
+                    id="deleteSavedArticleModalButton" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
 </div>
 
-<div class="modal fade" id="articleSavedModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div class="modal fade" id="noteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title articleSavedTitle">Success!</h5>
+            <div class="modal-header noteModalHeader">
             </div>
-            <div class="modal-body articleSavedBody">
+            <div class="modal-body noteModalBody">
 
             </div>
+            <button class='saveNoteButton'>Save Note</button>
+            <div class='alertDiv'></div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" id="closeArticleButton"
-                    data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
-</div>
